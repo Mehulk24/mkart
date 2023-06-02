@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/SignUp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        .signup-form {
+            position: relative;
+            text-align: center;
+            margin-top: 120px;
+            margin-bottom: 100px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            box-shadow: #ccc 10px 10px 10px 10px;
+        }
+
+        label {
+            margin-left: 30px;
+            margin-bottom: 8px;
+            text-align: left;
+            
+        }
+
+        .signup-form header {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 40px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 90%;
+            min-width: auto;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+
+        }
+
+        .p {
+            position: relative;
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+        a{
+            position: relative;
+            text-decoration: none;
+        }
+
+        a:hover{
+            color:  red;
+        }
+
+        .p1 {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        button[type="submit"] {
+            position: relative;
+            width: 120px;
+            min-width: auto;
+            padding: auto;
+            font-size: 16px;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 28px;
+            margin-right: 30px;
+        }
+
+        .social-container {
+            margin: 20px 0;
+        }
+
+        .social-container a {
+            text-decoration: none;
+            border: 1px solid #DDDDDD;
+            color: black;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 45px;
+            width: 45px;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+ <div class="messages">
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %}  class="alert alert-{{ message.tags }} alert-dismissible fade show " role="alert" {% endif %}>
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+    <form class="signup-form" method='POST' action="/login/" >
+        {% csrf_token %}
+        <header>
+            <h2>Login</h2>
+            <p class="p1">Create your account to get full access</p>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google"></i></a>
+            </div>
+        </header>
+        <div class="form-group">
+            <label for="email">User Name</label>
+            <input type="text" id="luname" name="luname" placeholder="Enter User Name" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password </label>
+            <input type="password" id="lpassword" name="lpassword" placeholder="Enter Password" required>
+        </div>
+        <div class="d-flex justify-content-between">
+            <p class="p"> Already have an account? click here <a href="{% url 'signup' %}"> Sign Up</a> </p>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+</body>
+<script>
+    setTimeout(function() {
+        var messages = document.getElementsByClassName('messages');
+        if (messages.length > 0) {
+            messages[0].style.display = 'none';
+        }
+    }, 4000);
+</script>
+</html>
