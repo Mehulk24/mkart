@@ -183,3 +183,19 @@ def remove_from_cart(request, product_id):
         return redirect('cart')
     else:
         return redirect('signup')
+
+def product_detail(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    product_d = Product.objects.all()
+    li = logo.objects.all()
+    cart = Cart.objects.all()
+    pd = {
+        'product_id' : product,
+        "logo": li,
+        'product_d' : product_d,
+        'cart' : cart
+    }
+    return render(request, 'product-detail.html', pd)
+
+def checkout(request):
+    return render(request, 'checkout.html')

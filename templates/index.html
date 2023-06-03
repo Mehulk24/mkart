@@ -43,7 +43,7 @@
               </ul>
             </div>
             <div class="product-content">
-              <h3 class="title"><a href="#">{{product.p_name}}</a></h3>
+              <h3 class="title"><a href="{% url 'product-detail' product_id=product.id %}">{{product.p_name}}</a></h3>
               <div class="price">Rs. {{product.p_price}}</div>
             </div>
           </div>
@@ -78,7 +78,7 @@
               </ul>
             </div>
             <div class="product-content">
-              <h3 class="title"><a href="#">{{product.p_name}}</a></h3>
+              <h3 class="title"><a href="{% url 'product-detail' product_id=product.id %}">{{product.p_name}}</a></h3>
               <div class="price">Rs. {{product.p_price}}</div>
             </div>
           </div>
@@ -112,7 +112,7 @@
               </ul>
             </div>
             <div class="product-content">
-              <h3 class="title"><a href="#">{{product.p_name}}</a></h3>
+              <h3 class="title"><a href="{% url 'product-detail' product_id=product.id %}">{{product.p_name}}</a></h3>
               <div class="price">Rs. {{product.p_price}}</div>
             </div>
           </div>
