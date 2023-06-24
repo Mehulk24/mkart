@@ -7,7 +7,8 @@ from Mkart.models import (
     Product,
     logo,
     c_product,
-    Cart
+    Cart,
+    WishlistItem
 )
 
 def base(request):
@@ -16,6 +17,8 @@ def base(request):
         "cart" : cart
     }
     return render(request, "base.html", lp)
+
+
 
 
 # Create your views here.
@@ -199,3 +202,40 @@ def product_detail(request, product_id):
 
 def checkout(request):
     return render(request, 'checkout.html')
+
+
+def add_to_wishlist(request, product_id):
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        wishlist_item = WishlistItem(user=request.user, product=product)
+        wishlist_item.save()
+    else:
+        return redirect('login')
+    return redirect('wishlist')
+
+def wishlist(request):
+    wishlist = WishlistItem.objects.all()   
+    item = WishlistItem.objects.filter(user=request.user)
+    cp = c_product.objects.all()
+    products = Product.objects.all()
+    li = logo.objects.all()
+    cart = Cart.objects.all()
+    ci = {
+        'wishlist': wishlist,
+        'item' : item,
+        "logo": li,
+        'cart' : cart,
+        "c_p": cp,  
+        "products": products,
+
+    } 
+    return render(request, 'wishlist.html', ci)
+
+def remove_from_wishlist(request, product_id):
+    if request.user.is_authenticated:
+        product = Product.objects.get(pk=product_id)
+        wishlist_item = WishlistItem.objects.get(user=request.user, product=product)
+        wishlist_item.delete()
+        return redirect('wishlist')
+    else:
+        return redirect('login')

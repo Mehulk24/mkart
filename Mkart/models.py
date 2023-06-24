@@ -16,6 +16,9 @@ card_op = (
     ("woman-product","woman-product"),
     ("kids-product","kids-product"),
 )
+
+
+
 class Product(models.Model):
     product_id = models.AutoField
     p_name = models.CharField(max_length=50)
@@ -30,6 +33,14 @@ class Product(models.Model):
     def __str__(self):
         return self.p_name
     
+class WishlistItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    added_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.product.p_name}'
+        
 class Ladeng_page(models.Model):
     page_name = models.CharField(max_length=50,default="")
     page_de= models.TextField(max_length=500,default="")

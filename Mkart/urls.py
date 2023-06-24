@@ -14,10 +14,9 @@ urlpatterns = [
     path('woman-product/',views.woman_product,name="woman-product"),
     path('kids-product/',views.kids_product,name="kids-product"),
     path('product-detail/<int:product_id>/',views.product_detail,name="product-detail"),
-    # path('search/',views.search,name="search"),
-    # path('add-to-wishlist/<int:product_id>/',views.add_to_wishlist,name='add_to_wishlist'),
-    # path('wishlist/',views.wishlist,name="wishlist"),
-    # path('delete-item-wishlist/<int:product_id>/',views.remove_from_wishlist,name='delete_from_wishlist'),
+    path('add-to-wishlist/<int:product_id>/',views.add_to_wishlist,name='add_to_wishlist'),
+    path('wishlist/',views.wishlist,name="wishlist"),
+    path('delete-item-wishlist/<int:product_id>/',views.remove_from_wishlist,name='delete_from_wishlist'),
     path('checkout/',views.checkout,name="checkout"),
 
 

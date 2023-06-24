@@ -10,6 +10,10 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
      <style>
+          .heart{
+               height: 40px;
+               margin-right: 15px;
+             }
           .footer {
                background-color: #24262b;
                padding: 70px 0;
@@ -219,13 +223,20 @@
 
                                    {% for carts in cart %}
                                    {% if carts.quantity != null %}
+                                   {% if carts.user == request.user %}
+                              
                                    <span class="position-absolute translate-middle badge rounded-pill bg-danger"
-                                        id="cart1">{{carts.quantity}}
-                                   </span>
+                                   id="cart1">{{carts.quantity}}
+                                 </span>
+                     
+                                 {% endif %}
                                    {% endif %}
                                    {% endfor %}
 
                               </a>
+                              <a class="heart" href="{% url 'wishlist' %}" >
+                                   <i class="fa-solid fa-heart" style="color: #bf0d0d;"></i>
+                                   </a>
                               <div class="dropdown">
                                    <a class="text-reset dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                                         id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"

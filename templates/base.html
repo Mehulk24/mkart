@@ -533,6 +533,12 @@
       font-size: 18px;
 
     }
+
+    .heart{
+      height: 40px;
+      margin-right: 15px;
+    }
+
   </style>
 </head>
 
@@ -563,11 +569,19 @@
               
               {% for carts in cart %}
               {% if carts.quantity != null %}
-              <span class="position-absolute translate-middle badge rounded-pill bg-danger" id="cart1">{{carts.quantity}}
-              </span>
+              {% if carts.user == request.user %}
+                              
+              <span class="position-absolute translate-middle badge rounded-pill bg-danger"
+              id="cart1">{{carts.quantity}}
+            </span>
+
+            {% endif %}
               {% endif %}
               {% endfor %}
                 
+            </a>
+            <a class="heart" href="{% url 'wishlist' %}" >
+            <i class="fa-solid fa-heart" style="color: #bf0d0d;"></i>
             </a>
              <div class="dropdown">
               <a class="text-reset dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
