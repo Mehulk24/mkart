@@ -161,7 +161,8 @@ def add_to_cart(request, product_id):
 def cart(request):
     cart_items = Cart.objects.filter(user=request.user)
     cart_quntity = len(cart_items)
-    cart = Cart.objects.all()   
+    cart = Cart.objects.all()  
+    li = logo.objects.all() 
 
     i_total = 0
     for item in cart_items:
@@ -170,6 +171,7 @@ def cart(request):
     total = i_total + 99
     ci = {
         'cart_items': cart_items,
+         "logo": li,
         'total': len(cart_items),
         'cart' : cart,
         'total_price' : total,
