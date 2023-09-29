@@ -19,6 +19,7 @@ card_op = (
 
 
 
+
 class Product(models.Model):
     product_id = models.AutoField
     p_name = models.CharField(max_length=50)
@@ -76,5 +77,15 @@ class Cart(models.Model):
 
     
     
+class addres(models.Model):
+    user_n = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=10,default="")
+    address = models.CharField(max_length=100,default="")
+    city = models.CharField(max_length=100,default="")
+    state = models.CharField(max_length=100,default="")
+    post_code = models.CharField(max_length=100,default="")
+    
+    def __str__(self):
+        return self.user.username
     
     

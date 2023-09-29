@@ -8,7 +8,8 @@ from Mkart.models import (
     logo,
     c_product,
     Cart,
-    WishlistItem
+    WishlistItem,
+    addres
 )
 
 def base(request):
@@ -203,7 +204,7 @@ def product_detail(request, product_id):
     return render(request, 'product-detail.html', pd)
 
 def checkout(request):
-    return render(request, 'checkout.html')
+    return render(request, 'payment/checkout.html')
 
 
 def add_to_wishlist(request, product_id):
@@ -241,3 +242,23 @@ def remove_from_wishlist(request, product_id):
         return redirect('wishlist')
     else:
         return redirect('login')
+
+def address(request):
+    if request.method == 'POST':
+        phone = request.POST['phone']
+        address = request.POST['address']
+        post_code = request.POST['post_code']
+        city = request.POST['city']
+        state = request.POST['state']
+        addres.user_n = User.objects.get(username=request.user)
+        addres.phone = phone
+        addres.address = address
+        addres.city = city
+        addres.state = state
+        addres.post_code = post_code 
+        addres.save()
+        return redirect('checkout')
+    return render(request, 'payment/address.html')
+    
+
+    

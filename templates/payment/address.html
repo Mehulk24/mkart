@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Address Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  form {
+    max-width: 400px;
+    margin: 0 auto 60px ;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  input,
+  select {
+    width: 92%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+  }
+  button:hover {
+    background-color: #0056b3;
+
+  }
+</style>
+</head>
+<body>
+  <form action="/payment/checkout/" method="POST" > 
+       {% csrf_token %}
+    
+    <label for="addressLine1">Address Line 1:</label>
+    <input type="text" id="addressLine1" name="address" required>
+    
+    <label for="phone">Phone : </label>
+    <input type="tel" id="phone" name="phone" required>
+    
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required>
+    
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required>
+    
+    <label for="postalCode">Postal Code:</label>
+    <input type="text" id="postalCode" name="postalCode" required>
+    
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
